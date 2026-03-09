@@ -1,0 +1,153 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+
+<style>
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f4f6f9;
+font-family:Segoe UI,sans-serif;
+}
+
+.calculator{
+background:#090909;
+padding:20px;
+border-radius:15px;
+width:280px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.display{
+background:#e2dddd;
+height:60px;
+border-radius:8px;
+text-align:right;
+padding:10px;
+font-size:28px;
+margin-bottom:20px;
+overflow:hidden;
+word-wrap:break-word;
+}
+
+.buttons{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+button{
+height:50px;
+font-size:18px;
+border:none;
+border-radius:8px;
+background:#2064d3;
+color:white;
+cursor:pointer;
+transition:0.2s;
+}
+
+button:hover{
+background:#162d66;
+}
+
+.operator{
+background:#2563eb;
+}
+
+.equal{
+background:#16a34a;
+grid-column:span 2;
+}
+
+.clear{
+background:#dc2626;
+grid-column:span 2;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+<div class="display" id="display">0</div>
+
+<div class="buttons">
+
+<button class="clear">C</button>
+<button class="operator">/</button>
+<button class="operator">*</button>
+<button class="operator">-</button>
+
+<button>7</button>
+<button>8</button>
+<button>9</button>
+<button class="operator">+</button>
+
+<button>4</button>
+<button>5</button>
+<button>6</button>
+<button>1</button>
+
+<button>2</button>
+<button>3</button>
+<button>0</button>
+<button class="equal">=</button>
+
+</div>
+</div>
+
+<script>
+
+const display=document.getElementById("display");
+const buttons=document.querySelectorAll("button");
+
+let currentInput="";
+
+buttons.forEach(button=>{
+button.addEventListener("click",()=>{
+
+const value=button.textContent;
+
+if(value==="C"){
+currentInput="";
+display.textContent="0";
+}
+
+else if(value==="="){
+try{
+currentInput=eval(currentInput).toString();
+display.textContent=currentInput;
+}
+catch{
+display.textContent="Error";
+currentInput="";
+}
+}
+
+else{
+
+if(display.textContent==="0"){
+currentInput=value;
+}
+else{
+currentInput+=value;
+}
+
+display.textContent=currentInput;
+
+}
+
+});
+});
+
+</script>
+
+</body>
+</html>
+```
